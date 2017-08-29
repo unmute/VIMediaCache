@@ -248,17 +248,17 @@ didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
     NSString *mimeType = response.MIMEType;
     // Only download video/audio data
-    if ([mimeType rangeOfString:@"video/"].location == NSNotFound &&
-        [mimeType rangeOfString:@"audio/"].location == NSNotFound &&
-        [mimeType rangeOfString:@"application"].location == NSNotFound) {
-        completionHandler(NSURLSessionResponseCancel);
-    } else {
+//    if ([mimeType rangeOfString:@"video/"].location == NSNotFound &&
+//        [mimeType rangeOfString:@"audio/"].location == NSNotFound &&
+//        [mimeType rangeOfString:@"application"].location == NSNotFound) {
+//        completionHandler(NSURLSessionResponseCancel);
+//    } else {
         if ([self.delegate respondsToSelector:@selector(actionWorker:didReceiveResponse:)]) {
             [self.delegate actionWorker:self didReceiveResponse:response];
         }
         [self.cacheWorker startWritting];
         completionHandler(NSURLSessionResponseAllow);
-    }
+//    }
 }
 
 - (void)URLSession:(NSURLSession *)session
