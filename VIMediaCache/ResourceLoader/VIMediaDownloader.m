@@ -217,11 +217,14 @@ didCompleteWithError:(nullable NSError *)error {
     if ((self.notifyTime < currentTime - interval) || flush) {
         self.notifyTime = currentTime;
         VICacheConfiguration *configuration = [self.cacheWorker.cacheConfiguration copy];
-        [[NSNotificationCenter defaultCenter] postNotificationName:VICacheManagerDidUpdateCacheNotification
-                                                            object:self
-                                                          userInfo:@{
-                                                                     VICacheConfigurationKey: configuration,
-                                                                     }];
+
+        if (configuration) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:VICacheManagerDidUpdateCacheNotification
+                                                                object:self
+                                                              userInfo:@{
+                                                                         VICacheConfigurationKey: configuration,
+                                                                         }];
+        }
             
         if (finished && configuration.progress >= 1.0) {
             [self notifyDownloadFinishedWithError:nil];
