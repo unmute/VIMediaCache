@@ -249,7 +249,7 @@ didCompleteWithError:(nullable NSError *)error {
           dataTask:(NSURLSessionDataTask *)dataTask
 didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
-    NSString *mimeType = response.MIMEType;
+//    NSString *mimeType = response.MIMEType;
     // Only download video/audio data
 //    if ([mimeType rangeOfString:@"video/"].location == NSNotFound &&
 //        [mimeType rangeOfString:@"audio/"].location == NSNotFound &&
